@@ -32,8 +32,8 @@ typedef struct s_utils
 {
 	char			**no;
 	char			**so;
-	char			**ea;
 	char			**we;
+	char			**ea;
 }					t_utils;
 
 size_t		ft_strlen(const char *s);

@@ -54,13 +54,14 @@ int	ft_cheking_fc(char **arr, int i)
 	return (1);
 }
 
-int	ft_checking_the_four(char **arr)
+t_utils	*ft_checking_the_four(char **arr)
 {
 	char	*coor[4];
 	int 	i;
 	int 	flag;
 	int 	j;
 	int k;
+	t_utils	*utils;
 	
 	coor[0] = "NO";
 	coor[1] = "SO";
@@ -68,6 +69,7 @@ int	ft_checking_the_four(char **arr)
 	coor[3] = "EA";
 
 	i = 0;
+	utils = malloc(sizeof(t_utils));
 	flag = 0;
 	while (i < 6)
 	{
@@ -78,7 +80,7 @@ int	ft_checking_the_four(char **arr)
 		if(arr[i][k] == 'F' || arr[i][k] == 'C')
 		{
 			if (ft_cheking_fc(arr,i) == -1)
-				return (-1);
+				return (NULL);
 			flag++;
 		}
 		else
@@ -86,11 +88,19 @@ int	ft_checking_the_four(char **arr)
 			while (j < 4)
 			{
 				if(!ft_strncmp(&arr[i][k],coor[j] ,2))
-				{ 
+				{
 					if (ft_cheking_nsew(arr,i) == -1)
-						return (-1);
+						return (NULL);
 					else
 					{
+						if(j == 0)
+							utils->no = ft_split(&arr[i][k], ' ');
+						else if(j == 1)
+							utils->so = ft_split(&arr[i][k], ' ');
+						else if(j == 2)
+							utils->we = ft_split(&arr[i][k], ' ');
+						else if(j == 3)
+							utils->ea = ft_split(&arr[i][k], ' ');
 						flag++;
 						j = 4;
 					}
@@ -101,6 +111,6 @@ int	ft_checking_the_four(char **arr)
 		i++;
 	}
 	if(flag != 6)
-		return -1;
-	return (1);
+		return NULL;
+	return (utils);
 }

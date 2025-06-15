@@ -1,18 +1,12 @@
 #include "parsing.h"
 
-t_map	*full_members(char **arr, char **map)
+t_map	*full_members( char **map,t_utils *utils)
 {
 	t_map	*parse;
-	t_utils	*utils;
 
 	parse = malloc(sizeof(t_map));
-	utils = malloc(sizeof(t_utils));
 	if (!parse)
 		return (NULL);
-	utils->no = ft_split(arr[0], ' ');
-	utils->so = ft_split(arr[1], ' ');
-	utils->we = ft_split(arr[2], ' ');
-	utils->ea = ft_split(arr[3], ' ');
 	parse->north_texture_path = ft_strdup(utils->so[1]);
 	parse->south_texture_path = ft_strdup(utils->so[1]);
 	parse->west_texture_path = ft_strdup(utils->we[1]);
@@ -79,11 +73,13 @@ t_map	*find_player(char **arr, t_map *parse)
 t_map	*go_parse_lines(char **arr, char *ptr)
 {
 	t_map	*parse;
+	t_utils	*utils;
 	char	**map;
 	int		i;
 	int		b;
 
-	if (ft_checking_the_four(arr) == -1)
+	utils = ft_checking_the_four(arr);
+	if (!utils)
 		return (NULL);
 	i = ft_checking_nwl(ptr);
 	b = ft_valide_lines(ptr + i);
@@ -92,7 +88,7 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	map = ft_split(ptr + i, '\n');
 	if (ft_checking_close_map(map) == -1)
 		return (ret_help(map));
-	parse = full_members(arr, map);
+	parse = full_members( map,utils);
 	if (!parse)
 		return (ret_help(map));
 	parse = parse_colors(arr, parse);
