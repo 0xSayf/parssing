@@ -81,6 +81,10 @@ t_utils	*ft_checking_the_four(char **arr)
 		{
 			if (ft_cheking_fc(arr,i) == -1)
 				return (NULL);
+			if(arr[i][k] == 'F')
+				utils->f = ft_split(&arr[i][k], ' ');
+			else if(arr[i][k] == 'C')
+				utils->c = ft_split(&arr[i][k], ' ');
 			flag++;
 		}
 		else

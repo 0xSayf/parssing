@@ -7,7 +7,7 @@ t_map	*full_members( char **map,t_utils *utils)
 	parse = malloc(sizeof(t_map));
 	if (!parse)
 		return (NULL);
-	parse->north_texture_path = ft_strdup(utils->so[1]);
+	parse->north_texture_path = ft_strdup(utils->no[1]);
 	parse->south_texture_path = ft_strdup(utils->so[1]);
 	parse->west_texture_path = ft_strdup(utils->we[1]);
 	parse->east_texture_path = ft_strdup(utils->ea[1]);
@@ -19,26 +19,18 @@ t_map	*full_members( char **map,t_utils *utils)
 		return (NULL);
 	}
 	parse->map = map;
-	free_help(utils);
 	return (parse);
 }
 
-t_map	*parse_colors(char **arr, t_map *parse)
+t_map	*parse_colors(t_utils	*utils, t_map *parse)
 {
-	char	**floor;
-	char	**ceiling;
 	char	**f;
 	char	**c;
 
-	floor = ft_split(arr[4], ' ');
-	ceiling = ft_split(arr[5], ' ');
-	f = ft_split(floor[1], ',');
-	c = ft_split(ceiling[1], ',');
-	ft_freeing(floor);
-	ft_freeing(ceiling);
+	f = ft_split(utils->f[1], ',');
+	c = ft_split(utils->c[1], ',');
 	parse = parse_colors_utils_norm(parse, f, c);
-	// ft_freeing(f);
-	// ft_freeing(c);
+	free_help(utils);
 	return (parse);
 }
 
@@ -91,7 +83,7 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	parse = full_members( map,utils);
 	if (!parse)
 		return (ret_help(map));
-	parse = parse_colors(arr, parse);
+	parse = parse_colors(utils, parse);
 	if (!parse)
 		return (ret_help(map));
 	parse = find_player(map, parse);

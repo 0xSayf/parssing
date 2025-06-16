@@ -34,6 +34,8 @@ typedef struct s_utils
 	char			**so;
 	char			**we;
 	char			**ea;
+	char			**f;
+	char			**c;
 }					t_utils;
 
 size_t		ft_strlen(const char *s);
@@ -65,7 +67,7 @@ int			ft_sstrlen(char *string);
 char		*get_next_line(int fd);
 t_map		*parse_map_file(char *path);
 char		**ft_split(char const *s, char c);
-int			ft_checking_the_four(char **arr);
+t_utils	*ft_checking_the_four(char **arr);
 int	ft_cheking_fc(char **arr, int i);
 int			ft_cheking_fc_utils(char **vv);
 int			ft_cheking_ns(int n_s, char **vv);
