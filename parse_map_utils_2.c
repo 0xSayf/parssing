@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-t_map	*parse_colors_utils_norm(t_map *parse, char **f, char **c)
+t_map	*parse_colors_utils_norm(t_map *parse,t_utils *utils)
 {
 	int			i;
 	long long	codex;
@@ -9,12 +9,12 @@ t_map	*parse_colors_utils_norm(t_map *parse, char **f, char **c)
 	i = 0;
 	while (i < 3)
 	{
-		codex = ft_atoi(f[i]);
-		codexo = ft_atoi(c[i]);
+		codex = ft_atoi(utils->f[i]);
+		codexo = ft_atoi(utils->c[i]);
 		if (codexo == -1 || codex == -1 || codex > 255 || codexo > 255)
 		{
-			ft_freeing(f);
-			ft_freeing(c);
+			// ft_freeing(f);
+			// ft_freeing(c);
 			return (NULL);
 		}
 		parse->floor_color[i] = (unsigned int)codex;

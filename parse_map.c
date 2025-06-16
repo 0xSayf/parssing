@@ -24,12 +24,8 @@ t_map	*full_members( char **map,t_utils *utils)
 
 t_map	*parse_colors(t_utils	*utils, t_map *parse)
 {
-	char	**f;
-	char	**c;
 
-	f = ft_split(utils->f[1], ',');
-	c = ft_split(utils->c[1], ',');
-	parse = parse_colors_utils_norm(parse, f, c);
+	parse = parse_colors_utils_norm(parse,utils);
 	free_help(utils);
 	return (parse);
 }

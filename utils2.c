@@ -41,22 +41,59 @@ int	ft_cheking_fc_utils(char **vv)
 	return (1);
 }
 
-int	ft_cheking_fc(char **arr, int i)
+char **ft_cheking_fc(char **arr, int i, int k)
 {
 	char	**vv;
-
-	if (ft_count(arr[i], ' ') != 2)
-		return (-1);
-	vv = ft_split(arr[i], ' ');
-	if (ft_cheking_fc_utils(vv) == -1)
-		return (-1);
-	ft_freeing(vv);
-	return (1);
+	int		sil;
+	int		save;
+	int		len;
+	char	*ptr;
+	int		to_malc;
+	sil = 0;
+	save = k;
+	len = k;
+	int gg;
+	while (arr[i][k])
+	{
+		if(arr[i][k] == ',')
+			sil++;
+		k++;
+	}
+	if(sil != 2)
+		return NULL;
+	while (arr[i][save] && (arr[i][save] == 32 || (arr[i][save] >= 9 && arr[i][save] <= 13)))
+		save++;
+	to_malc = 0;
+	gg = save;
+	while (arr[i][save])
+	{
+		if(arr[i][save] != ' ' && (arr[i][save] < 9 || arr[i][save] > 13))
+			to_malc++;
+		save++;
+	}
+	ptr = malloc((to_malc) + 1);
+	k = 0;
+	len = gg;
+	while (k < to_malc)
+	{
+		if(arr[i][k + len] != ' ' && (arr[i][len + k] < 9 || arr[i][len + k] > 13))
+		{
+			ptr[k] = arr[i][len + k];
+			k++;
+		}
+		else
+			len++;
+	}
+	ptr[k] = '\0';
+	vv = ft_split(ptr,',');
+	free(ptr);
+	return (vv);
 }
 
 t_utils	*ft_checking_the_four(char **arr)
 {
 	char	*coor[4];
+	char	**ret;
 	int 	i;
 	int 	flag;
 	int 	j;
@@ -82,12 +119,13 @@ t_utils	*ft_checking_the_four(char **arr)
 			k++;
 		if((arr[i][k] == 'F' || arr[i][k] == 'C') && (arr[i][k + 1] == ' '))
 		{
-			if (ft_cheking_fc(arr,i) == -1)
+			ret = ft_cheking_fc(arr,i,k + 1);
+			if (!ret)
 				return (NULL);
 			if(arr[i][k] == 'F')
-				utils->f = ft_split(&arr[i][k], ' ');
+				utils->f = ret;
 			else if(arr[i][k] == 'C')
-				utils->c = ft_split(&arr[i][k], ' ');
+				utils->c = ret;
 			flag++;
 		}
 		else
