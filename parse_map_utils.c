@@ -51,15 +51,18 @@ int	ft_closing(char **map)
 		j = 0;
 		while (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
 			j++;
-		if (map[i][j] != '1')
-			return (-1);
-		size = ft_strlen(map[i]) - 1;
-		while (map[i][size] == 32 || (map[i][size] >= 9 && map[i][size] <= 13))
-			size--;
-		if (map[i][size] != '1')
-			return (-1);
-		if (norminette_help_close(map, i, j, size) == -1)
-			return (-1);
+		if(map[i][j] != '\0')
+		{
+			if (map[i][j] != '1')
+				return (-1);
+			size = ft_strlen(map[i]) - 1;
+			while (map[i][size] == 32 || (map[i][size] >= 9 && map[i][size] <= 13))
+				size--;
+			if (map[i][size] != '1')
+				return (-1);
+			if (norminette_help_close(map, i, j, size) == -1)
+				return (-1);
+		}
 		i++;
 	}
 	return (1);
