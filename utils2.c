@@ -71,7 +71,10 @@ t_utils	*ft_checking_the_four(char **arr)
 	i = 0;
 	utils = malloc(sizeof(t_utils));
 	flag = 0;
-	while (i < 6)
+	int size = 0;
+	while (arr[size])
+		size++;
+	while (i < size)
 	{
 		k = 0;
 		j = 0;

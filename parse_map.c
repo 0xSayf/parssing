@@ -67,17 +67,11 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	t_map	*parse;
 	t_utils	*utils;
 	char	**map;
-	int		i;
-	int		b;
 
 	utils = ft_checking_the_four(arr);
 	if (!utils)
 		return (NULL);
-	i = ft_checking_nwl(ptr);
-	b = ft_valide_lines(ptr + i);
-	if (b == -1)
-		return (NULL);
-	map = ft_split(ptr + i, '\n');
+	map = ft_checking_nwl(ptr,arr);
 	if (ft_checking_close_map(map) == -1)
 		return (ret_help(map));
 	parse = full_members( map,utils);
