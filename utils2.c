@@ -80,7 +80,7 @@ t_utils	*ft_checking_the_four(char **arr)
 		j = 0;
 		while (arr[i][k] == 32 || (arr[i][k] >= 9 && arr[i][k] <= 13))
 			k++;
-		if(arr[i][k] == 'F' || arr[i][k] == 'C')
+		if((arr[i][k] == 'F' || arr[i][k] == 'C') && (arr[i][k + 1] == ' '))
 		{
 			if (ft_cheking_fc(arr,i) == -1)
 				return (NULL);
