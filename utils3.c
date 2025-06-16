@@ -38,5 +38,7 @@ void	free_help(t_utils *utils)
 	ft_freeing(utils->so);
 	ft_freeing(utils->ea);
 	ft_freeing(utils->we);
+	ft_freeing(utils->f);
+	ft_freeing(utils->c);
 	free(utils);
 }

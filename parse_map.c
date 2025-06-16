@@ -24,7 +24,6 @@ t_map	*full_members( char **map,t_utils *utils)
 
 t_map	*parse_colors(t_utils	*utils, t_map *parse)
 {
-
 	parse = parse_colors_utils_norm(parse,utils);
 	free_help(utils);
 	return (parse);
