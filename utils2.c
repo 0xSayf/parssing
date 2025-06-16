@@ -13,34 +13,6 @@ void	ft_freeing(char **arr)
 	free(arr);
 }
 
-int	ft_cheking_ns(int n_s, char **vv)
-{
-	if (n_s != 2)
-	{
-		ft_freeing(vv);
-		return (-1);
-	}
-	return (1);
-}
-
-int	ft_cheking_fc_utils(char **vv)
-{
-	int	i;
-	int	n_s;
-
-	i = 0;
-	n_s = 0;
-	while (vv[1][i])
-	{
-		if (vv[1][i] == ',')
-			n_s++;
-		i++;
-	}
-	if (ft_cheking_ns(n_s, vv) == -1)
-		return (-1);
-	return (1);
-}
-
 char **ft_cheking_fc(char **arr, int i, int k)
 {
 	char	**vv;
@@ -48,11 +20,12 @@ char **ft_cheking_fc(char **arr, int i, int k)
 	int		save;
 	int		len;
 	char	*ptr;
+	int 	gg;
 	int		to_malc;
+	
 	sil = 0;
 	save = k;
 	len = k;
-	int gg;
 	while (arr[i][k])
 	{
 		if(arr[i][k] == ',')
