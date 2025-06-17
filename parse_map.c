@@ -57,6 +57,7 @@ t_map	*find_player(char **arr, t_map *parse)
 	return (NULL);
 }
 
+
 t_map	*go_parse_lines(char **arr, char *ptr)
 {
 	t_map	*parse;
@@ -67,7 +68,7 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	if (!utils)
 		return (NULL);
 	map = ft_checking_nwl(ptr,arr);
-	if (ft_checking_close_map(map) == -1)
+	if (ft_checking_close_map(map) == -1 )
 		return (ret_help(map));
 	parse = full_members( map,utils);
 	if (!parse)
@@ -79,6 +80,34 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	if (!parse)
 		return (ret_help(map));
 	return (parse);
+}
+
+int	ft_invalid_map(char	*map)
+{
+	int	i;
+	int j;
+	int flag;
+
+	i = 0;
+	flag = 0;
+	while (map[i])
+	{
+		j = 0;
+		if(map[i] == '\n')
+		{
+			j = i + 1;
+			while (map[j] && map[j] != '\n')
+			{
+				if(map[j] > 32 && map[j] < 126)
+					flag = 1;
+				j++;
+			}
+			if(!flag)
+				return -1;
+		}
+		i += j + 1;
+	}
+	return 1;
 }
 
 t_map	*parse_map_file(char *path)
@@ -97,6 +126,12 @@ t_map	*parse_map_file(char *path)
 	ptr = read_line_hh(fd);
 	if (!ptr)
 		return (NULL);
+	if(ft_invalid_map(ptr) == -1)
+	{
+		free(ptr);
+		printf("Invalid map = :)\n");
+		return NULL;
+	}
 	arr = ft_split(ptr, '\n');
 	parse = go_parse_lines(arr, ptr);
 	if (!parse)

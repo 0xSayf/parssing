@@ -45,6 +45,7 @@ char	*read_line_hh(int fd)
 	if (tet1 == NULL)
 	{
 		close(fd);
+		printf("Empty file :)\n");
 		return (NULL);
 	}
 	while (tet1 != NULL)

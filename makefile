@@ -1,7 +1,7 @@
 CC = cc 
 CFILES = $(wildcard *.c)
 NAME = cub3d 
-FLAGS = -fsanitize=address
+FLAGS = #-fsanitize=address
 OFILES = $(CFILES:.c=.o)
 
 all : $(NAME)
