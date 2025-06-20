@@ -100,10 +100,9 @@ int ft_nsea(char	*map)
 	return 1;
 }
 
-int	ft_invalid_map(char	*map)
+int index_map_p(char *map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map[i])
@@ -114,13 +113,20 @@ int	ft_invalid_map(char	*map)
 			while (map[i] == 32 || (map[i] >= 9 && map[i] <= 13))
 				i++;
 			if(map[i] == '1')
-			{
-				j = i;
-				break;
-			}		
+				return i;
 		}
 		i++;
 	}
+	return -1;
+}
+
+int	ft_invalid_map(char	*map)
+{
+	int	i;
+	int	j;
+
+	i = index_map_p(map);
+	j = i;
 	while (map[j])
 	{
 		if(map[j] == '\n')
