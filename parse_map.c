@@ -85,27 +85,39 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 int	ft_invalid_map(char	*map)
 {
 	int	i;
-	int j;
-	int flag;
+	int	j;
 
 	i = 0;
-	flag = 0;
 	while (map[i])
 	{
-		j = 0;
 		if(map[i] == '\n')
 		{
-			j = i + 1;
+			i++;
+			while (map[i] == 32 || (map[i] >= 9 && map[i] <= 13))
+				i++;
+			if(map[i] == '1')
+			{
+				j = i;
+				break;
+			}		
+		}
+		i++;
+	}
+	while (map[j])
+	{
+		if(map[j] == '\n')
+		{
+			j++;
 			while (map[j] && map[j] != '\n')
 			{
 				if(map[j] > 32 && map[j] < 126)
-					flag = 1;
+					break;
 				j++;
 			}
-			if(!flag)
+			if(map[j] == '\n')
 				return -1;
 		}
-		i += j + 1;
+		j++;
 	}
 	return 1;
 }
@@ -126,15 +138,11 @@ t_map	*parse_map_file(char *path)
 	ptr = read_line_hh(fd);
 	if (!ptr)
 		return (NULL);
-	if(ft_invalid_map(ptr) == -1)
-	{
-		free(ptr);
-		printf("Invalid map = :)\n");
-		return NULL;
-	}
 	arr = ft_split(ptr, '\n');
 	parse = go_parse_lines(arr, ptr);
 	if (!parse)
+		return (ret_first_help(ptr, arr));
+	if(ft_invalid_map(ptr) == -1)
 		return (ret_first_help(ptr, arr));
 	ft_freeing(arr);
 	free(ptr);
