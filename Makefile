@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra
+CFLAGS = #-Wall -Wextra
 LDFLAGS = -fsanitize=address 
 INCLUDES = -I./include
 

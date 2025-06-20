@@ -38,29 +38,11 @@ int	index_map_p(char *map)
 	return (-1);
 }
 
-int	ft_invalid_map(char *map)
+int	ft_invalid_map(char *map,char **arr)
 {
 	int	i;
-	int	j;
-
+	
 	i = index_map_p(map);
-	j = i;
-	while (map[j])
-	{
-		if (map[j] == '\n')
-		{
-			j++;
-			while (map[j] && map[j] != '\n')
-			{
-				if (map[j] > 32 && map[j] < 126)
-					break ;
-				j++;
-			}
-			if (map[j] == '\n')
-				return (-1);
-		}
-		j++;
-	}
 	if (ft_nsea(&map[i]) == -1)
 		return (-1);
 	return (1);
