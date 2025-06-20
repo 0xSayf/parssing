@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-t_map	*full_members( char **map,t_utils *utils)
+t_map	*full_members(char **map, t_utils *utils)
 {
 	t_map	*parse;
 
@@ -22,9 +22,9 @@ t_map	*full_members( char **map,t_utils *utils)
 	return (parse);
 }
 
-t_map	*parse_colors(t_utils	*utils, t_map *parse)
+t_map	*parse_colors(t_utils *utils, t_map *parse)
 {
-	parse = parse_colors_utils_norm(parse,utils);
+	parse = parse_colors_utils_norm(parse, utils);
 	free_help(utils);
 	return (parse);
 }
@@ -57,7 +57,6 @@ t_map	*find_player(char **arr, t_map *parse)
 	return (NULL);
 }
 
-
 t_map	*go_parse_lines(char **arr, char *ptr)
 {
 	t_map	*parse;
@@ -67,10 +66,10 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	utils = ft_checking_the_four(arr);
 	if (!utils)
 		return (NULL);
-	map = ft_checking_nwl(ptr,arr);
-	if (ft_checking_close_map(map) == -1 )
+	map = ft_checking_nwl(ptr, arr);
+	if (ft_checking_close_map(map) == -1)
 		return (ret_help(map));
-	parse = full_members( map,utils);
+	parse = full_members(map, utils);
 	if (!parse)
 		return (ret_help(map));
 	parse = parse_colors(utils, parse);
@@ -80,72 +79,6 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	if (!parse)
 		return (ret_help(map));
 	return (parse);
-}
-
-int ft_nsea(char	*map)
-{
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (map[i])
-	{
-		if(map[i] == 'S' || map[i] == 'W' || map[i] == 'E' || map[i] == 'N')
-			flag++;
-		i++;
-	}
-	if(flag != 1)
-		return -1;
-	return 1;
-}
-
-int index_map_p(char *map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		if(map[i] == '\n')
-		{
-			i++;
-			while (map[i] == 32 || (map[i] >= 9 && map[i] <= 13))
-				i++;
-			if(map[i] == '1')
-				return i;
-		}
-		i++;
-	}
-	return -1;
-}
-
-int	ft_invalid_map(char	*map)
-{
-	int	i;
-	int	j;
-
-	i = index_map_p(map);
-	j = i;
-	while (map[j])
-	{
-		if(map[j] == '\n')
-		{
-			j++;
-			while (map[j] && map[j] != '\n')
-			{
-				if(map[j] > 32 && map[j] < 126)
-					break;
-				j++;
-			}
-			if(map[j] == '\n')
-				return -1;
-		}
-		j++;
-	}
-	if(ft_nsea(&map[i]) == -1)
-		return -1;
-	return 1;
 }
 
 t_map	*parse_map_file(char *path)
@@ -168,7 +101,7 @@ t_map	*parse_map_file(char *path)
 	parse = go_parse_lines(arr, ptr);
 	if (!parse)
 		return (ret_first_help(ptr, arr));
-	if(ft_invalid_map(ptr) == -1)
+	if (ft_invalid_map(ptr) == -1)
 		return (ret_first_help(ptr, arr));
 	ft_freeing(arr);
 	free(ptr);

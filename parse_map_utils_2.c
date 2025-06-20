@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-t_map	*parse_colors_utils_norm(t_map *parse,t_utils *utils)
+t_map	*parse_colors_utils_norm(t_map *parse, t_utils *utils)
 {
 	int			i;
 	long long	codex;

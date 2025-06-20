@@ -20,16 +20,15 @@ int	ft_cheking_nsew(char **arr, int i)
 	return (1);
 }
 
-char	**ft_checking_nwl(char *ptr,char **arr)
+char	**ft_checking_nwl(char *ptr, char **arr)
 {
 	char	*start;
 	char	**ret;
 	int		size;
 	int		i;
-	int k;
-	
-	size = 0;
+	int		k;
 
+	size = 0;
 	while (arr[size])
 		size++;
 	i = 0;
@@ -38,8 +37,8 @@ char	**ft_checking_nwl(char *ptr,char **arr)
 		k = 0;
 		while (arr[i][k] == 32 || (arr[i][k] >= 9 && arr[i][k] <= 13))
 			k++;
-		if(arr[i][k] == '1')
-			break;
+		if (arr[i][k] == '1')
+			break ;
 		i++;
 	}
 	size = i;
@@ -47,8 +46,8 @@ char	**ft_checking_nwl(char *ptr,char **arr)
 		size++;
 	size -= i;
 	ret = malloc((size + 1) * sizeof(char *));
-	if(!ret)
-		return NULL;
+	if (!ret)
+		return (NULL);
 	k = 0;
 	while (k < size)
 	{
@@ -56,7 +55,7 @@ char	**ft_checking_nwl(char *ptr,char **arr)
 		k++;
 	}
 	ret[k] = NULL;
-	return ret;
+	return (ret);
 }
 
 int	ft_check_emptyline(char *ptr, int *i)

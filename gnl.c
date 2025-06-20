@@ -1,7 +1,5 @@
 #include "parsing.h"
 
-
-
 static char	*here(char *string)
 {
 	char	*ptr;
