@@ -1,4 +1,4 @@
-#include "parsing.h"
+#include "../include/parsing.h"
 
 t_map	*full_members(char **map, t_utils *utils)
 {

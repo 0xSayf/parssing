@@ -1,4 +1,4 @@
-#include "parsing.h"
+#include "../include/parsing.h"
 
 int	find_map(char *ptr, int i)
 {
@@ -22,13 +22,13 @@ int	ft_cheking_nsew(char **arr, int i)
 
 char	**ft_checking_nwl(char *ptr, char **arr)
 {
-	char	*start;
 	char	**ret;
 	int		size;
 	int		i;
 	int		k;
 
 	size = 0;
+	(void)ptr;
 	while (arr[size])
 		size++;
 	i = 0;

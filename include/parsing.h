@@ -1,43 +1,7 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-# include <fcntl.h>
-# include <limits.h>
-# include <stdbool.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_map
-{
-	char		**map;
-	int			x_player;
-	int			y_player;
-	int			width;
-	int			height;
-	char		player_dir;
-	char		*north_texture_path;
-	char		*south_texture_path;
-	char		*east_texture_path;
-	char		*west_texture_path;
-	uint32_t	floor_color[3];
-	uint32_t	ceiling_color[3];
-}				t_map;
-
-typedef struct s_utils
-{
-	char		**no;
-	char		**so;
-	char		**we;
-	char		**ea;
-	char		**f;
-	char		**c;
-}				t_utils;
+# include "structs.h"
 
 size_t			ft_strlen(const char *s);
 char			*ft_strnstr(const char *hay, const char *need, size_t len);

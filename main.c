@@ -1,27 +1,14 @@
-#include "parsing.h"
+#include "include/cub3d.h"
 
-int	main(int ac, char **av)
+int	main()
 {
-	t_map *parse;
+	t_game	game;
 
-	if (ac != 2)
-		return (0);
-	char *path = av[1];
-	if (!ft_check_dot(path))
-	{
-		printf("Invalide file format\n");
-		return (0);
-	}
-	else
-	{
-		parse = parse_map_file(path);
-		// printf("%c\n", parse->player_dir);
-		// ft_freeing(parse->map);
-		// free(parse->north_texture_path);
-		// free(parse->south_texture_path);
-		// free(parse->east_texture_path);
-		// free(parse->west_texture_path);
-		// free(parse);
-	}
-	// while(1);
+	// if (ft_check_dot(argv[1]))
+	// 	return (EXIT_FAILURE);
+	if (!init_game(&game))
+		return (EXIT_FAILURE);
+	game_loop(&game);
+	//TODO clean_up(&game);
+	return (EXIT_SUCCESS);
 }
