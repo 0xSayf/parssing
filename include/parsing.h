@@ -34,8 +34,6 @@ t_map			*parse_map_file(char *path);
 char			**ft_split(char const *s, char c);
 t_utils			*ft_checking_the_four(char **arr);
 char			**ft_cheking_fc(char **arr, int i, int k);
-int				ft_cheking_fc_utils(char **vv);
-int				ft_cheking_ns(int n_s, char **vv);
 char			*ft_strdup(const char *s1);
 void			free_help(t_utils *utils);
 int				first_line(char *map);
