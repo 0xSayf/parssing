@@ -82,6 +82,24 @@ t_map	*go_parse_lines(char **arr, char *ptr)
 	return (parse);
 }
 
+int ft_nsea(char	*map)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	while (map[i])
+	{
+		if(map[i] == 'S' || map[i] == 'W' || map[i] == 'E' || map[i] == 'N')
+			flag++;
+		i++;
+	}
+	if(flag != 1)
+		return -1;
+	return 1;
+}
+
 int	ft_invalid_map(char	*map)
 {
 	int	i;
@@ -119,6 +137,8 @@ int	ft_invalid_map(char	*map)
 		}
 		j++;
 	}
+	if(ft_nsea(&map[i]) == -1)
+		return -1;
 	return 1;
 }
 
